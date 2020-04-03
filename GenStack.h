@@ -15,6 +15,7 @@ class GenStack
     bool isFull(); //is it full?
     bool isEmpty(); //is it empty?
     char peek(); //returns top value on the stack
+    void resize();//automatically makes stack larger once full
 
     //VARIABLES
     int mSize; //maximum size of stack

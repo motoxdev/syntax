@@ -51,9 +51,7 @@ char GenStack::peek()
   if(top == -1){
     throw string("GenStack is empty");
   }
-  return storage[top];
-  //check if emmpty before proceeding
-
+  //check if empty before proceeding
   //just returns it but doesn't change the top value or "remove it"
   return myArray[top];
 }
@@ -66,4 +64,15 @@ bool GenStack::isFull()
 bool GenStack::isEmpty()
 {
   return (top == -1);
+}
+
+void GenStack::resize(){
+  if ((top==mSize-1)== true){
+  char* temp = new char[mSize + 5];
+    for (int i = 0; i < mSize; ++i){
+      temp[i] = myArray[i];
+      delete [] myArray;
+      myArray = temp;
+    }
+  }
 }
