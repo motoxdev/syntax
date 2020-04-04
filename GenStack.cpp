@@ -112,8 +112,6 @@ bool GenStack::check(string inputFile){
                 return false; //they are NOT the same deliminator, therefore
                              //returning false to the user
               }
-              else
-                return true;
               break;
             }
             if((line[i]) == ']'){
@@ -123,8 +121,6 @@ bool GenStack::check(string inputFile){
               if((t == '(') || (t == '{')){
                 return false;
               }
-              else
-                return true;
               break;
             }
 
