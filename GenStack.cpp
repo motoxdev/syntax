@@ -1,10 +1,19 @@
 #include "GenStack.h"
+#include <iostream>
+#include <cstring>
+#include <locale>
+#include <fstream>
+#include <string>
+#include <streambuf>
+#include <math.h>
+
+#include<bits/stdc++.h>
 
 
-//dafault constructor
+//default constructor
 GenStack:: GenStack()
 {
-  //init array to heap b/c we allocate this memory dynamically
+  //initialize array to the heap because we allocated this memory dynamically
   myArray = new char[128];
   mSize = 128;
   top = -1;
@@ -14,7 +23,7 @@ GenStack:: GenStack()
 //overload constructor
 GenStack:: GenStack(int maxSize)
 {
-  //init array to heap b/c we allocate this memory dynamically
+  //initialize array to the heap because we allocated this memory dynamically
   myArray = new char[maxSize];
   mSize = maxSize;
   top = -1;
@@ -38,10 +47,8 @@ char GenStack::pop()
 {
   if(top == -1)
   {
-    throw string("GenStack is empty");
+    throw string("Stack is empty");
   }
-  //check if emmpty before proceeding
-
   //return myArray value of the current top, then decrement it after returning to set a new top
   return myArray[top--];
 }
@@ -49,9 +56,8 @@ char GenStack::pop()
 char GenStack::peek()
 {
   if(top == -1){
-    throw string("GenStack is empty");
+    throw string("Stack is empty");
   }
-  //check if empty before proceeding
   //just returns it but doesn't change the top value or "remove it"
   return myArray[top];
 }
@@ -68,11 +74,33 @@ bool GenStack::isEmpty()
 
 void GenStack::resize(){
   if ((top==mSize-1)== true){
-  char* temp = new char[mSize + 5];
+  char* temp = new char[mSize + 10]; //creating a new array with a bigger size
     for (int i = 0; i < mSize; ++i){
       temp[i] = myArray[i];
-      delete [] myArray;
-      myArray = temp;
     }
+      delete [] myArray; //gets rid of the former array
+      myArray = temp; //new sized array
   }
+}
+
+bool GenStack::check(string inputFile){
+  ifstream filename(inputFile);
+  GenStack s(100);
+  string line = "";
+  if(filename.is_open()) //opening the file inputted from commandline
+
+    while(!filename.eof()){
+      getline(filename, line); //getting each line in the file
+        for(int i = 0; i < line.size(); ++i){
+            if ((line[i] == '(') || (line[i] == '{') || (line[i] == '[')){
+              s.push(line[i]); //if it has an openining deliminator
+                                    //it gets pushed into the stack
+            }
+            if((line[i]) == ')'){
+              t = s.peek();
+            }
+        }
+        filename.close();
+    }
+
 }
