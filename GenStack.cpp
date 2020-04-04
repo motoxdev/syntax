@@ -87,6 +87,7 @@ bool GenStack::check(string inputFile){
   ifstream filename(inputFile);
   GenStack s(100);
   string line = "";
+  int mistake = 0;
   if(filename.is_open()) //opening the file inputted from commandline
 
     while(!filename.eof()){
@@ -102,7 +103,11 @@ bool GenStack::check(string inputFile){
               s.pop(); //seeing if '(' AKA the same deliminator
               if((t == '{') || (t == '[')){
                 return false;
+                mistake = i;
               }
+              mistake++;
+              cout << "MISTAKE ON LINE " << mistake << endl;
+              cout << "MISSING ( " << endl;
               break;
             }
             if((line[i]) == '}'){
@@ -111,7 +116,11 @@ bool GenStack::check(string inputFile){
               if((t == '(') || (t == '{')){
                 return false; //they are NOT the same deliminator, therefore
                              //returning false to the user
+                mistake = i;
               }
+              mistake++;
+              cout << "MISTAKE ON LINE " << mistake << endl;
+              cout << "MISSING { " << endl;
               break;
             }
             if((line[i]) == ']'){
@@ -120,10 +129,13 @@ bool GenStack::check(string inputFile){
               s.pop();
               if((t == '(') || (t == '{')){
                 return false;
+                mistake = i;
               }
+              mistake++;
+              cout << "MISTAKE ON LINE " << mistake << endl;
+              cout << "MISSING [ " << endl;
               break;
             }
-
 
         }
         filename.close();
