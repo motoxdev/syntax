@@ -7,9 +7,6 @@
 #include <streambuf>
 #include <math.h>
 
-//#include<bits/stdc++.h>
-
-
 //default constructor
 GenStack:: GenStack()
 {

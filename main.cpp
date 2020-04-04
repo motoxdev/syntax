@@ -7,8 +7,8 @@ int main()
 {
   string filename; //user input
   GenStack s(100);
-  char r = 'Y';
-  string filename2;
+  char r = 'Y'; //response var
+  string filename2; //dummy var
   cout << "Hello! Please input the source code file: " << endl;
   cin >> filename;
     while (s.check(filename) == true){ //loop so they can keep checking
