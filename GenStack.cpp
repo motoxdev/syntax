@@ -96,9 +96,39 @@ bool GenStack::check(string inputFile){
               s.push(line[i]); //if it has an openining deliminator
                                     //it gets pushed into the stack
             }
+            //CHECKING THE THREE POSSIBILITIES
             if((line[i]) == ')'){
-              t = s.peek();
+              t = s.peek(); //storing the top of the stack in a dummy var
+              s.pop(); //seeing if '(' AKA the same deliminator
+              if((t == '{') || (t == '[')){
+                return false;
+              }
+              break;
             }
+            if((line[i]) == '}'){
+              t = s.peek();//storing top of stack in dummy var
+              s.pop(); // seeing if it is the same deliminator
+              if((t == '(') || (t == '{')){
+                return false; //they are NOT the same deliminator, therefore
+                             //returning false to the user
+              }
+              else
+                return true;
+              break;
+            }
+            if((line[i]) == ']'){
+              //DOING SAME THING AS ABOVE 2 ALGORITHMS
+              t = s.peek();
+              s.pop();
+              if((t == '(') || (t == '{')){
+                return false;
+              }
+              else
+                return true;
+              break;
+            }
+
+
         }
         filename.close();
     }
