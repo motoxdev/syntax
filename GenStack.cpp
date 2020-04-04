@@ -7,7 +7,7 @@
 #include <streambuf>
 #include <math.h>
 
-#include<bits/stdc++.h>
+//#include<bits/stdc++.h>
 
 
 //default constructor
@@ -88,6 +88,7 @@ bool GenStack::check(string inputFile){
   GenStack s(100);
   string line = "";
   int mistake = 0;
+  bool r = true;
   if(filename.is_open()) //opening the file inputted from commandline
 
     while(!filename.eof()){
@@ -102,7 +103,7 @@ bool GenStack::check(string inputFile){
               t = s.peek(); //storing the top of the stack in a dummy var
               s.pop(); //seeing if '(' AKA the same deliminator
               if((t == '{') || (t == '[')){
-                return false;
+                r = false;
                 mistake = i;
               }
               mistake++;
@@ -114,7 +115,7 @@ bool GenStack::check(string inputFile){
               t = s.peek();//storing top of stack in dummy var
               s.pop(); // seeing if it is the same deliminator
               if((t == '(') || (t == '{')){
-                return false; //they are NOT the same deliminator, therefore
+                r = false; //they are NOT the same deliminator, therefore
                              //returning false to the user
                 mistake = i;
               }
@@ -128,7 +129,7 @@ bool GenStack::check(string inputFile){
               t = s.peek();
               s.pop();
               if((t == '(') || (t == '{')){
-                return false;
+                r = false;
                 mistake = i;
               }
               mistake++;
@@ -136,7 +137,6 @@ bool GenStack::check(string inputFile){
               cout << "MISSING [ " << endl;
               break;
             }
-
         }
         filename.close();
     }
